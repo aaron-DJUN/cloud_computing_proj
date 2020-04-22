@@ -1,6 +1,6 @@
 # CS5224 Project
-# Group 18
-Personal Shopping Recommender
+## Group 18
+## Personal Shopping Recommender (PSR)
 
 
 To Use (local test)
