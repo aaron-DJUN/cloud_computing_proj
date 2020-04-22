@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="card">
+    <div class="card-body">
+      <h3 > Idea  </h3>
+      <div class="card-title"> 
+        <a class="text-muted"> Time: {{ post.date_posted.strftime('%Y-%m-%d') }}</a>
+      </div>
+      <p class="card-content"> Content: {{ post.content }}</p>
+      <img src="{{ url_for('static', filename='profile_pics/' + post.image_file) }}" >
+    </div>
+  </div>
+ 
+ <div class="card">
+  <div class="card-body">
+   <h3 class="card-title"> Progress  </h3>
+   <div class="btn-group" role="group" >
+     {% if post.phase_1 == 1 %}
+     <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#phase_1.finished">Phase 1</button>
+     {% else %}
+     <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#phase_1.unfinished" >Phase 1</button>
+     {%endif%}
+
+     {% if post.phase_2 == 1 %}
+     <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#phase_2.finished">Phase 2</button>
+     {% else %}
+     <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#phase_2.unfinished">Phase 2</button>
+     {%endif%}
+   </div>
+  </div>
+</div>
+<!-- collapse content -->
+    <div class="collapse multi-collapse" id="phase_1.finished">
+      <div class="card card-body">
+        <div class = 'card'>
+          <h5 class="card-title border-bottom"> Phase 1</h5>
+             <p class="card-text border-bottom">All managers have evaluated your great idea from every aspect. </p>
+             <p class="card-text" style= "color:#CA6F1E"><strong>Feedback: Your idea is so great! Thanks for giving us the chance to raise guest satisfaction through this effective way </strong></p>
+           </div>
+      </div>
+    </div>
+    <div class="collapse multi-collapse" id="phase_1.unfinished">
+      <div class="card card-body">
+        <div class = 'card'>
+          <h5 class="card-title border-bottom"> Phase 1</h5>
+             <p class="card-text border-bottom">The managers are still evaluating your great idea and trying to measure it feasibility from every aspect. </p>
+             <p class="card-text" style= "color:#CA6F1E"><strong> Please give us more time. Thank you! </strong></p>
+           </div>
+          </div> 
+        </div>
+        <div class="collapse multi-collapse" id="phase_2.finished">
+          <div class="card card-body">
+            <div class = 'card'>
+              <h5 class="card-title border-bottom"> Phase 2</h5>
+                 <p class="card-text border-bottom">This amamzing idea has been shared during our weekly meeting.</p>
+                 <p class="card-text" style= "color:#CA6F1E"><strong>Feedback: We are suprised by your great idea and decide to implement it. We will contact you later.</strong></p>
+               </div>
+          </div>
+      </div>
+    <div class="collapse multi-collapse" id="phase_2.unfinished">
+      <div class="card card-body">
+        <div class = 'card'>
+          <h5 class="card-title border-bottom"> Phase 2</h5>
+             <p class="card-text border-bottom">This amamzing idea will be shared during our weekly meeting. </p>
+             <p class="card-text" style= "color:#CA6F1E"><strong>Please give us more time. Thank you! </strong></p>
+          </div>
+        </div>
+  </div>
+{% endblock content %}

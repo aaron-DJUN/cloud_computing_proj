@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+ {% if games %}
+    {% for game in games.items %}
+        <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ game.imUrl }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" >
+                <span style="background-color: #2b2301; color: #fff; display: inline-block; padding: 2px 5px; font-weight: bold; border-radius: 3px;">Categories</span>  {{ game.categories }}
+              </a>
+              <!-- <small class="text-muted">brand: {{ game.brand }}</small> -->
+            </div>
+            <h2><a class="article-title" href="{{ url_for('game_detail', game_id=game.asin) }}" >asin: {{ game.asin }}</a></h2>
+            <p class="article-content">Keywords: {{ game.keywords }}</p>
+          </div>
+        </article>
+    {% endfor %}
+    {% for page_num in games.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+      {% if page_num %}
+        {% if games.page == page_num %}
+          <a class="btn btn-info mb-4" href="{{ url_for('games_by_p',page=page_num,price_choose = price_choose) }}">{{ page_num }}</a>
+        {% else %}
+          <a class="btn btn-outline-info mb-4" href="{{ url_for('games_by_p', page=page_num,price_choose = price_choose) }}">{{ page_num }}</a>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+     {% else %}
+         <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Whoops ! No games under this category found!</h4>
+             <p class="card-text">Click the button below to return to home page</p>
+              <a href="{{url_for('home')}}" class="btn btn-warning">Home </a> 
+      </div>
+    </div>
+    {% endif %}
+{% endblock content %}

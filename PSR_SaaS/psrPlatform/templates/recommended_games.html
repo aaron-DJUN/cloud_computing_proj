@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+ <p class="font-weight-bold" style="font-size: 20px;">Recommended Products According to Your Rating History:</p>
+ {% if games %}
+    {% for game in games %}
+        <div>
+        <article class="media content-section">
+          <img class="ounded-circle img-fluid article-img" src="{{ game.imUrl }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" >{{ game.categories }}</a>
+              <small class="text-muted">{{ game.brand }}</small>
+            </div>
+            <h2><a class="article-title" href="{{ url_for('game_detail', game_id=game.asin) }}" >{{ game.asin }}</a></h2>
+            <p class="article-content">Keywords: {{ game.keywords }}</p>
+          </div>
+        </article>
+      </div>
+    {% endfor %}
+  {% endif %}
+  <a class="btn btn-outline-info" href="{{ url_for('home') }}">Explore More :)</a>
+  <div style="padding:50px;"></div>
+{% endblock content %}

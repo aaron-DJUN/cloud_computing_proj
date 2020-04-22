@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2> Hi! {{username}} </h2>
+<h2 style="color:#1B6DA3"> Welcome to the world of video games! </h2>
+<p> &nbsp; </p>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Search by Price</h4>
+        <p class="card-text">Click the button below to choose the price of games you would like to look through</p>
+        <div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Max Price Accepted
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="{{url_for('games_by_p', price_choose='100')}}">100</a>
+    <a class="dropdown-item" href="{{url_for('games_by_p', price_choose='500')}}">500</a>
+    <a class="dropdown-item" href="{{url_for('games_by_p', price_choose='1000')}}">all price</a>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Search by Pictures</h4>
+        <p class="card-text">You can also search the game you want by using a picture </p>
+        <a href="{{url_for('games_by_pic')}}" class="btn btn-warning">Search by Picures </a> 
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Recommend for you</h4>
+        <p class="card-text">If you have no idea which video game you want, you can click the button below and let us recommend for you</p>
+        <a href="{{url_for('recommended_games')}}" class="btn btn-info">Recommend</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+

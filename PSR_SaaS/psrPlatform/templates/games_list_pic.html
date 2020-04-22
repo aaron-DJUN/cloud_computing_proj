@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+ <p class="font-weight-bold" style="font-size: 20px;">Images Found:</p>
+ {% if games %}
+    {% for game in games %}
+      <div>
+          {% if loop.index == 1 %}
+            <p> <i><strong> Most Similar </strong></i></p>
+          {% elif loop.index == 2 %}
+            <p> <i><strong>2nd Most Similar </strong></i></p>
+          {% else %}
+            <p> <i><strong>3rd Most Similar</strong></i></p>
+          {% endif %}
+        <article class="media content-section">
+          <img class="rounded-circle img-fluid article-img" src="{{ game.imUrl }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" >{{ game.categories }}</a>
+              <small class="text-muted">{{ game.brand }}</small>
+            </div>
+            <h2><a class="article-title" href="{{ url_for('game_detail', game_id=game.asin) }}" >{{ game.asin }}</a></h2>
+            <p class="article-content">Keywords: {{ game.keywords }}</p>
+          </div>
+        </article>
+      </div>
+    {% endfor %}
+  {% endif %}
+  
+  <a class="btn btn-outline-info" href="{{ url_for('games_by_pic') }}">Try More :)</a>
+  <div style="padding:50px;"></div>
+  {% endblock content %}

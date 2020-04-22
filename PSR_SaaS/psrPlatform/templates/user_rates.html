@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2> Hi, {{username}} !</h2>
+   {% if rates %}
+    {% for rate in rates.items %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="text-muted">Rate Date : {{ rate.reviewTime.strftime('%Y-%m-%d') }}</a>
+            </div>
+            <h5><a class="article-title" href="{{ url_for('game_detail',game_id=rate.product.asin) }}">Game Keywords : {{ rate.product.keywords}}</a></h5>
+            <p class="article-content">Score: {{ rate.rating }}</p>
+            <p class="article-content">Comment : {{ rate.reviewText }}</p>
+          
+          </div>
+        </article>
+    {% endfor %}
+    {% for page_num in rates.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+      {% if page_num %}
+        {% if rates.page == page_num %}
+          <a class="btn btn-info mb-4" href="{{ url_for('user_rates',page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+          <a class="btn btn-outline-info mb-4" href="{{ url_for('user_rates', page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
+      {% else %}
+        ...
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Whoops ! You haven't rated any games!</h4>
+        <p class="card-text">Click the button below and go back to home page to find a game to rate now!</p>
+        <a href="{{url_for('home')}}" class="btn btn-warning">Go home page </a> 
+      </div>
+    </div>
+  {% endif %}
+{% endblock content %}
