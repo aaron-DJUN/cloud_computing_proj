@@ -7,7 +7,7 @@ To Use (local test)
 
 Some username with password can be found in `./testCases.txt`
 
-e.g., username: Thomas password: 123456
+e.g., username: `Thomas` password: `123456`
 
 ```
 # python 3.7.0
